@@ -16,30 +16,28 @@ def get_rhines_times():
     jens_races = []
     for line in races:
         if line[14:29]== "Jennifer Rhines":
-            jens_races.append(line[0:12])
+            jens_races.append(line[0:12].replace("   ","").replace("    ","").replace(" ",""))
     return jens_races
-
 def get_average():
     racetimes = get_rhines_times()
     races= len(racetimes)
     total = datetime.timedelta() 
     
     for race in racetimes:
-        if race[8]==".":
-         total += datetime.timedelta(minutes=int(race[3:5]), seconds=int(race[6:8]), milliseconds=int(race[9:12]))
+        if len(race)>5 and race[5]==".":
+         total += datetime.timedelta(minutes=int(race[0:2]), seconds=int(race[3:5]), milliseconds=int(race[6:9]))
         else:                             
-         total += datetime.timedelta(minutes=int(race[3:5]), seconds=int(race[6:8]))
+         total += datetime.timedelta(minutes=int(race[0:2]), seconds=int(race[3:5]))
  
     avg_time= f"{total/races}"[2:-5]
 
      
-    return  print(avg_time) 
+    return  avg_time
         
     """Return Jennifer Rhines' average race time in the format:
        mm:ss:M where the solutions format was not matching the requested format, i have followed the way he does as mm:ss.M :
        m corresponds to a minutes digit
        s corresponds to a seconds digit
        M corresponds to a milliseconds digit (no rounding, just the single digit)"""
-    pass
 
-get_average()
+
