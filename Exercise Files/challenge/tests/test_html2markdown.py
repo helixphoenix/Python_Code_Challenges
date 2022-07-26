@@ -14,13 +14,13 @@ def test_spaces():
 
 def test_single_paragraph():
     html = '<p>This is a paragraph.</p>'
-    expected = 'This is a paragraph.'
+    expected = 'This is a paragraph. '
     actual = html2markdown(html)
     assert actual == expected
 
 def test_multiple_paragraphs():
     html = '<p>This is a paragraph.</p><p>This is another\nparagraph.</p>'
-    expected = 'This is a paragraph.\n\nThis is another paragraph.'
+    expected = 'This is a paragraph. \n\nThis is another paragraph.'
     actual = html2markdown(html)
     assert actual == expected
 
